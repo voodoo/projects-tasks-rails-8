@@ -1,0 +1,10 @@
+<nav class="flex justify-between items-center p-4">
+  <%= link_to root_path, class: "text-black hover:text-gray-600" do %>
+    <%= image_tag "/icon.svg", alt: "Logo", class: "w-8 h-8" %>
+  <% end %>
+  <% if Current.user %>
+    <%= button_to "Logout", session_path, method: :delete, class: "text-black hover:text-gray-600" %>
+  <% else %>
+    <%= link_to "Login", new_session_path, class: "text-black hover:text-gray-600" %>
+  <% end %>
+</nav>

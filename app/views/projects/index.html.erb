@@ -1,0 +1,38 @@
+<div class="container mx-auto px-4 py-8">
+  <div class=" mb-6">
+    <%= render "shared/notice" %>
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Projects: <%= Project.count %> </h1>
+    
+    <div class="flex gap-2">
+      <%= form_with(model: Project.new, class: "flex gap-2") do |f| %>
+        <%= f.text_field :name, 
+            placeholder: "Add new project...",
+            class: "border rounded px-3 py-2" %>
+        <%= f.submit "Create",
+            class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <div class="grid grid-cols-2 gap-4 font-semibold text-gray-700 mb-2">
+      <div>Name</div>
+      <div>Completion</div>
+    </div>
+
+    <% @projects.each do |project| %>
+      <div class="grid grid-cols-2 gap-4 items-center">
+        <%= link_to project.name, project_path(project), 
+            class: "text-blue-600 hover:underline" %>
+        
+        <div class="w-full bg-gray-200 rounded-full h-4">
+           <div class="bg-emerald-400 h-4 rounded-full"
+               style="width: <%= project.completion_percentage %>%">
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
